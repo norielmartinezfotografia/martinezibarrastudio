@@ -201,7 +201,7 @@
         .feature-list li:last-child { border-bottom: 1px solid var(--line); }
         .feature-list li strong { color: var(--ink); font-weight: 600; }
 
-        /* DARK SECTION & EFECTO LUPA */
+        /* DARK SECTION Y LUPA INTERACTIVA */
         .dark-section {
             background: #100E0A;
             color: #F1ECE0;
@@ -227,15 +227,15 @@
             display: block;
         }
 
-        /* Lupa Circular */
+        /* Lente de la Lupa */
         .magnifier-lens {
             position: absolute;
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             border: 2px solid var(--gold-soft);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
-            pointer-events: none;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.85), inset 0 0 10px rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* Permite que los clics pasen directamente al contenedor */
             display: none;
             background-repeat: no-repeat;
             z-index: 10;
@@ -486,14 +486,14 @@
         </div>
     </section>
 
-    <!-- ATELIER CON LUPA INTERACTIVA -->
+    <!-- ATELIER (CON LUPA ACTIVA Y CLIC A WHATSAPP) -->
     <section class="dark-section" data-msg="Hola, me interesa conocer más sobre las sesiones de estudio y el diseño de vestidos de novia / alta costura">
         <div class="wrap row">
             <div class="row-media">
-                <div class="zoom-frame" id="zoomContainer">
+                <div class="zoom-frame" id="zoomContainer" data-msg="Hola, estuve viendo la sección de alta costura y retoque de piel, me gustaría cotizar una sesión o vestido">
                     <img src="galeria/foto-atelier.jpg" id="zoomImg" class="zoom-target" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
                     <div class="magnifier-lens" id="magnifierLens"></div>
-                    <div class="zoom-tag">Pasa el mouse para inspección High-End</div>
+                    <div class="zoom-tag">Desliza el cursor para ver detalles</div>
                 </div>
             </div>
             <div class="row-copy">
@@ -683,34 +683,18 @@
 
     <footer>Martínez Ibarra · Fotografía, Video & Alta Costura — Chihuahua 2026</footer>
 
-    <!-- LÓGICA DE LA LUPA Y REDIRECCIÓN GLOBAL A WHATSAPP -->
+    <!-- SCRIPT AMBOS FUNCIONALES (WHATSAPP + LUPA) -->
     <script>
         const TELEFONO_WHATSAPP = '5216141722100';
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- REDIRECCIÓN WHATSAPP ---
-            document.body.addEventListener('click', (e) => {
-                // Evitamos que al dar clic en la zona de la lupa redirija si el usuario está inspeccionando la imagen
-                if (e.target.closest('#zoomContainer')) return;
-
-                const targetConMsg = e.target.closest('[data-msg]');
-                let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
-                
-                if (targetConMsg && targetConMsg.dataset.msg) {
-                    mensaje = targetConMsg.dataset.msg;
-                }
-
-                const urlWhatsApp = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-                window.open(urlWhatsApp, '_blank');
-            });
-
-            // --- LÓGICA DE EFECTO LUPA ---
+            // 1. LÓGICA DE LA LUPA (ZOOM AL PASAR CURSOR)
             const container = document.getElementById('zoomContainer');
             const img = document.getElementById('zoomImg');
             const lens = document.getElementById('magnifierLens');
 
             if (container && img && lens) {
-                const zoomLevel = 2.5; // Nivel de amplificación de textura
+                const zoomLevel = 2.5;
 
                 container.addEventListener('mouseenter', () => {
                     lens.style.display = 'block';
@@ -726,14 +710,12 @@
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
 
-                    // Posición de la lente centrada en el cursor
                     let lensX = x - (lens.offsetWidth / 2);
                     let lensY = y - (lens.offsetHeight / 2);
 
                     lens.style.left = `${lensX}px`;
                     lens.style.top = `${lensY}px`;
 
-                    // Cálculo del fondo amplificado dentro del círculo
                     const bgWidth = container.offsetWidth * zoomLevel;
                     const bgHeight = container.offsetHeight * zoomLevel;
 
@@ -744,6 +726,19 @@
                     lens.style.backgroundPosition = `-${bgX}px -${bgY}px`;
                 });
             }
+
+            // 2. LÓGICA REDIRECCIÓN A WHATSAPP
+            document.body.addEventListener('click', (e) => {
+                const targetConMsg = e.target.closest('[data-msg]');
+                let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
+                
+                if (targetConMsg && targetConMsg.dataset.msg) {
+                    mensaje = targetConMsg.dataset.msg;
+                }
+
+                const urlWhatsApp = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+                window.open(urlWhatsApp, '_blank');
+            });
         });
     </script>
 </body>
