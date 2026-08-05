@@ -201,7 +201,7 @@
         .feature-list li:last-child { border-bottom: 1px solid var(--line); }
         .feature-list li strong { color: var(--ink); font-weight: 600; }
 
-        /* DARK SECTION & CONTENEDOR ZOOM */
+        /* DARK SECTION & MARCO PANORÁMICO DE ZOOM */
         .dark-section {
             background: #100E0A;
             color: #F1ECE0;
@@ -224,7 +224,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.12s ease-out;
+            /* Transición suave al entrar/salir, pero instantánea al mover el ratón */
+            transition: transform 0.2s ease-out;
+            will-change: transform, transform-origin;
         }
 
         .zoom-tag {
@@ -472,13 +474,13 @@
         </div>
     </section>
 
-    <!-- ATELIER (ZOOM PANORÁMICO POR SCALA) -->
+    <!-- ATELIER (EFECTO ZOOM PANORÁMICO DE CUADRO COMPLETO) -->
     <section class="dark-section">
         <div class="wrap row">
             <div class="row-media">
                 <div class="zoom-frame" data-msg="Hola, estuve viendo la sección de alta costura y retoque de piel, me gustaría cotizar una sesión o vestido">
                     <img src="galeria/foto-atelier.jpg" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
-                    <div class="zoom-tag">Pasa el cursor para inspeccionar el detalle de piel y textil</div>
+                    <div class="zoom-tag">Desplaza el cursor para recorrer el detalle de piel y textil</div>
                 </div>
             </div>
             <div class="row-copy">
@@ -672,18 +674,23 @@
         const TELEFONO_WHATSAPP = '5216141722100';
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. MÉTODO DE ZOOM ORIGINAL (PANORÁMICO POR SCALA DE IMAGEN)
+            // LÓGICA DE ZOOM PANORÁMICO DE CUADRO COMPLETO (SINS LUPAS NI CÍRCULOS)
             const zoomFrame = document.querySelector('.zoom-frame');
             const zoomImg = zoomFrame ? zoomFrame.querySelector('img') : null;
 
             if (zoomFrame && zoomImg) {
+                const NIVELES_ZOOM = 3.5; // Factor de amplificación panorámica
+
                 zoomFrame.addEventListener('mousemove', (e) => {
                     const rect = zoomFrame.getBoundingClientRect();
+                    
+                    // Calculamos la posición del cursor respecto a las esquinas del cuadro (0% a 100%)
                     const x = ((e.clientX - rect.left) / rect.width) * 100;
                     const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                    // Ajuste instantáneo del punto focal para recorrer la imagen completa
                     zoomImg.style.transformOrigin = `${x}% ${y}%`;
-                    // Cambiado de scale(2.4) a scale(3.2) para dar mayor detalle de magnificación
-                    zoomImg.style.transform = 'scale(3.2)';
+                    zoomImg.style.transform = `scale(${NIVELES_ZOOM})`;
                 });
 
                 zoomFrame.addEventListener('mouseleave', () => {
@@ -692,7 +699,7 @@
                 });
             }
 
-            // 2. REDIRECCIÓN GLOBAL A WHATSAPP
+            // REDIRECCIÓN GLOBAL A WHATSAPP AL HACER CLIC
             document.body.addEventListener('click', (e) => {
                 const targetConMsg = e.target.closest('[data-msg]');
                 let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
