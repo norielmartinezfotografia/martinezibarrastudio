@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martínez Ibarra · Studio / Atelier</title>
     
+    <!-- SEO & META TAGS -->
+    <title>Martínez Ibarra · Fotografía, Video y Alta Costura en Chihuahua</title>
+    <meta name="description" content="Estudio de fotografía, cinematografía y diseño de vestidos de alta costura en Chihuahua. Cobertura premium para bodas, quinceaños, eventos y corporativo.">
+    <meta name="keywords" content="fotografo chihuahua, fotografia de bodas, video de bodas chihuahua, vestidos de novia chihuahua, diseño de modas, alta costura, quinceaños, eventos corporativos, fotografo profesional">
+    <meta name="author" content="Martínez Ibarra Studio">
+
+    <!-- Open Graph para WhatsApp y Redes -->
+    <meta property="og:title" content="Martínez Ibarra · Fotografía, Video & Alta Costura en Chihuahua">
+    <meta property="og:description" content="Fotografía, cinematografía y diseño de moda exclusivo para bodas, quinceaños y eventos en Chihuahua.">
+    <meta property="og:image" content="https://norielmartinezfotografia.github.io/martinezibarrastudio/galeria/foto-hero.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -36,6 +48,7 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            cursor: pointer;
         }
 
         img { max-width: 100%; display: block; }
@@ -86,9 +99,9 @@
 
         p { color: var(--muted); font-weight: 400; }
 
-        a { color: inherit; text-decoration: none; }
+        a { color: inherit; text-decoration: none; display: block; }
 
-        /* ---------- HERO ---------- */
+        /* HERO */
         .hero {
             padding-top: 90px;
             display: grid;
@@ -98,11 +111,9 @@
             min-height: 92vh;
         }
 
-        .hero .eyebrow { margin-bottom: 26px; }
-
         .hero h1 {
-            font-size: clamp(46px, 5.4vw, 74px);
-            line-height: 0.98;
+            font-size: clamp(42px, 5.2vw, 70px);
+            line-height: 1.02;
             margin-bottom: 26px;
             max-width: 620px;
         }
@@ -110,7 +121,7 @@
         .hero p.lede {
             font-size: 16px;
             line-height: 1.85;
-            max-width: 460px;
+            max-width: 480px;
             margin-bottom: 44px;
         }
 
@@ -138,10 +149,6 @@
             color: var(--ink);
         }
 
-        .hero-media {
-            position: relative;
-        }
-
         .hero-media img {
             width: 100%;
             height: 640px;
@@ -149,16 +156,13 @@
             border-radius: 2px;
         }
 
-        /* ---------- EDITORIAL ROW ---------- */
+        /* EDITORIAL ROW */
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 70px;
             align-items: center;
         }
-
-        .row.reverse .row-media { order: 2; }
-        .row.reverse .row-copy { order: 1; }
 
         .row-media img {
             width: 100%;
@@ -197,7 +201,7 @@
         .feature-list li:last-child { border-bottom: 1px solid var(--line); }
         .feature-list li strong { color: var(--ink); font-weight: 600; }
 
-        /* ---------- DARK EDITORIAL SECTION ---------- */
+        /* DARK SECTION */
         .dark-section {
             background: #100E0A;
             color: #F1ECE0;
@@ -210,7 +214,6 @@
         .zoom-frame {
             position: relative;
             overflow: hidden;
-            cursor: crosshair;
             border-radius: 2px;
             height: 560px;
             border: 1px solid rgba(241, 236, 224, 0.16);
@@ -220,7 +223,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.12s ease-out;
         }
 
         .zoom-tag {
@@ -234,18 +236,16 @@
             font-size: 0.68rem;
             letter-spacing: 1.6px;
             text-transform: uppercase;
-            pointer-events: none;
         }
 
-        /* ---------- COLLECTIONS ---------- */
+        /* COLLECTIONS */
         .section-head {
             text-align: center;
-            max-width: 640px;
+            max-width: 680px;
             margin: 0 auto 70px;
         }
 
         .section-head h2 { font-size: clamp(34px, 3.6vw, 48px); margin-bottom: 16px; }
-        .section-head p { font-size: 15.5px; }
 
         .cards-grid {
             display: grid;
@@ -309,16 +309,10 @@
         }
 
         .card .price-line { font-size: 12.5px; margin-bottom: 16px; }
-
-        .card > div > p.card-desc {
-            font-size: 13.5px;
-            color: var(--muted);
-            margin-bottom: 18px;
-        }
-
+        .card > div > p.card-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 18px; }
         .card .feature-list li { font-size: 13.2px; padding: 12px 0; }
 
-        /* ---------- COMPARISON TABLE ---------- */
+        /* TABLE */
         .table-wrap { overflow-x: auto; }
 
         table.compare {
@@ -346,6 +340,8 @@
             vertical-align: top;
         }
 
+        table.compare tr { cursor: pointer; }
+
         table.compare tr td:first-child {
             font-family: var(--font-display);
             font-size: 18px;
@@ -361,10 +357,9 @@
             padding-right: 0;
         }
 
-        table.compare tr:hover td { background: rgba(166, 121, 62, 0.05); }
+        table.compare tr:hover td { background: rgba(166, 121, 62, 0.08); }
 
-        /* ---------- LEGACY / SUPREME ---------- */
-        /* CAMBIO 1: El fondo con imagen ahora usa galeria/foto-legacy.jpg */
+        /* LEGACY */
         .legacy-section {
             background:
                 linear-gradient(180deg, rgba(16,14,10,0.72), rgba(16,14,10,0.86)),
@@ -380,7 +375,7 @@
         .legacy-section .feature-list li strong { color: #F8F5EC; }
         .legacy-section .price-line { color: var(--gold-soft); font-size: 28px; }
 
-        /* ---------- BUTTONS ---------- */
+        /* BUTTONS */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -397,11 +392,10 @@
         }
 
         .btn:hover { background: var(--gold); color: #17150F; transform: translateY(-2px); }
-
         .btn.light { background: var(--gold); color: #17150F; }
         .btn.light:hover { background: #F8F5EC; }
 
-        /* ---------- FINAL CTA ---------- */
+        /* FINAL CTA */
         .final-cta {
             text-align: center;
             background: var(--cream);
@@ -409,7 +403,7 @@
 
         .final-cta .eyebrow { display: block; margin-bottom: 18px; }
         .final-cta h2 { font-size: clamp(34px, 4.2vw, 56px); max-width: 780px; margin: 0 auto 20px; line-height: 1.05; }
-        .final-cta p { max-width: 480px; margin: 0 auto 40px; font-size: 15.5px; }
+        .final-cta p { max-width: 520px; margin: 0 auto 40px; font-size: 15.5px; }
 
         footer {
             padding: 40px 0;
@@ -424,123 +418,122 @@
             section { padding: 80px 0; }
             .hero { grid-template-columns: 1fr; padding-top: 60px; min-height: auto; gap: 40px; }
             .hero-media img { height: 420px; }
-            .row, .row.reverse { grid-template-columns: 1fr; gap: 30px; }
-            .row.reverse .row-media, .row.reverse .row-copy { order: initial; }
+            .row { grid-template-columns: 1fr; gap: 30px; }
             .row-media img { height: 380px; }
             .zoom-frame { height: 380px; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-promo">10% de descuento en pago de contado &nbsp;·&nbsp; Fechas limitadas 2026</div>
+    <div class="top-promo" data-msg="Hola, vi la promoción en la página web y me gustaría información de fechas disponibles">
+        10% de descuento en pago de contado &nbsp;·&nbsp; Agenda Abierta Chihuahua 2026 (Clic para cotizar)
+    </div>
 
     <!-- HERO -->
-    <section class="hero wrap" id="inicio">
+    <section class="hero wrap" data-msg="Hola, me interesa solicitar una cotización general de fotografía y video para mi evento en Chihuahua">
         <div>
-            <span class="eyebrow">Martínez Ibarra · Studio / Atelier</span>
-            <h1>Historias vestidas de cine.</h1>
-            <p class="lede">Fotografía y cinematografía nupcial creadas como una pieza de alta costura: íntima, precisa y hecha para permanecer.</p>
+            <span class="eyebrow">Martínez Ibarra · Fotografía, Video & Alta Costura</span>
+            <h1>Historias de autor vestidas de cine en Chihuahua.</h1>
+            <p class="lede">Fotografía, cinematografía de eventos y diseño exclusivo de vestidos de novia y alta costura. Producciones creadas con precisión quirúrgica y estética editorial.</p>
             <div class="invest-line">
                 <span class="label">Colecciones desde</span>
                 <span class="value">$10,500 MXN</span>
             </div>
         </div>
         <div class="hero-media">
-            <!-- CAMBIO 2: Foto principal del Hero -->
-            <img src="galeria/foto-hero.jpg" alt="Fotografía principal Martínez Ibarra">
+            <img src="galeria/foto-hero.jpg" alt="Fotógrafo y videógrafo de bodas en Chihuahua - Martínez Ibarra">
         </div>
     </section>
 
     <!-- PAQUETE ESENCIAL -->
-    <section>
+    <section data-msg="Hola, me gustaría información detallada del Paquete Esencial de $15,500 MXN">
         <div class="wrap row">
             <div class="row-media">
-                <!-- CAMBIO 3: Foto sección Paquete Esencial -->
-                <img src="galeria/foto-esencial.jpg" alt="Sesión de fotos Paquete Esencial">
+                <img src="galeria/foto-esencial.jpg" alt="Fotografía de Bodas y Quinceaños en Chihuahua">
             </div>
             <div class="row-copy">
                 <span class="eyebrow">01 · Colección de entrada</span>
                 <h2>Paquete <span class="italic-gold">Esencial</span></h2>
                 <span class="price-line">Desde $15,500 MXN</span>
-                <p>Sencillo, elegante e impecable. Creado para celebraciones íntimas que exigen una narrativa visual auténtica y emotiva.</p>
+                <p>Sencillo, elegante e impecable. Creado para celebraciones íntimas, bodas, quinceaños o eventos corporativos que exigen una narrativa visual auténtica.</p>
                 <ul class="feature-list">
-                    <li><strong>Cobertura</strong> — Sesión casual, ceremonia y fiesta (hasta medianoche)</li>
+                    <li><strong>Cobertura completa</strong> — Sesión previa, ceremonia y recepción</li>
                     <li><strong>Fotografía digital</strong> — 150 fotografías Clean + 10 con retoque editorial High-End</li>
-                    <li><strong>Video</strong> — Trailer (30 seg) + PhotoSlide Reel (15 seg)</li>
-                    <li><strong>Entregables físicos</strong> — Photobook pasta dura (8×8″) + Sobre de Arte con 5 impresiones de galería</li>
+                    <li><strong>Video de alta definición</strong> — Trailer (30 seg) + PhotoSlide Reel (15 seg)</li>
+                    <li><strong>Entregables físicos</strong> — Photobook pasta dura (8×8″) + Sobre de Arte</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- FIRMA DE ATELIER -->
-    <section class="dark-section">
-        <div class="wrap row reverse">
+    <!-- ATELIER -->
+    <section class="dark-section" data-msg="Hola, me interesa conocer más sobre las sesiones de estudio y el diseño de vestidos de novia / alta costura">
+        <div class="wrap row">
             <div class="row-media">
                 <div class="zoom-frame">
-                    <!-- CAMBIO 4: Foto con la lupa de retoque de piel -->
-                    <img src="galeria/foto-atelier.jpg" alt="Retoque de Piel Editorial">
-                    <div class="zoom-tag">Pasa el cursor para inspeccionar la textura de piel</div>
+                    <img src="galeria/foto-atelier.jpg" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
+                    <div class="zoom-tag">Clic para enviar mensaje directo</div>
                 </div>
             </div>
             <div class="row-copy">
-                <span class="eyebrow">Firma de atelier &amp; técnica</span>
-                <h2>Micro-retoque de <span class="italic-gold">piel &amp; luz natural</span></h2>
-                <p>Nuestro estándar de edición combina la preservación quirúrgica de la textura anatómica del poro con un manejo atmosférico de la luz natural — nada de piel plástica, nada de luz plana.</p>
+                <span class="eyebrow">Diseño de Modas &amp; Técnica Editorial</span>
+                <h2>Micro-retoque de <span class="italic-gold">piel &amp; textura de alta costura</span></h2>
+                <p>Nuestra técnica combina el tratamiento quirúrgico de la piel con la captura perfecta de telas, pedrería y encajes. Ya sea en un vestido de novia hecho a medida o en una sesión de estudio, cuidamos cada pliegue y destello de luz natural.</p>
             </div>
         </div>
     </section>
 
     <!-- COLECCIONES -->
-    <section>
+    <section id="paquetes">
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">Las colecciones de la casa</span>
-                <h2>Elige la escala de <span class="italic-gold">tu historia</span>.</h2>
-                <p>Cada colección parte de una narrativa visual propia y puede convertirse en una producción completamente personalizada.</p>
+                <span class="eyebrow">Cobertura de Bodas, Quinceaños & Eventos</span>
+                <h2>Elige la escala de <span class="italic-gold">tu gran día</span>.</h2>
+                <p>Haz clic en cualquiera de las colecciones para iniciar chat directo por WhatsApp.</p>
             </div>
 
             <div class="cards-grid">
-                <div class="card">
+                <div class="card" data-msg="Hola, me interesa información sobre el Paquete Clásico de $18,000 MXN">
                     <div>
                         <span class="tag">Colección clásica</span>
                         <h3>Paquete Clásico</h3>
                         <span class="price-line">$18,000 MXN</span>
-                        <p class="card-desc">Elegancia, equilibrio y atemporalidad visual. La colección perfecta para capturar la esencia de tu boda con un balance idóneo.</p>
+                        <p class="card-desc">Elegancia y equilibrio visual. Cobertura perfecta en foto y video para inmortalizar momentos clave.</p>
                         <ul class="feature-list">
                             <li><strong>180 Fotos Digitales</strong> Clean + <strong>15 High-End</strong></li>
-                            <li><strong>Wedding Film (2:30 min)</strong> + Trailer (1 min)</li>
+                            <li><strong>Wedding / Event Film (2:30 min)</strong> + Trailer</li>
                             <li><strong>Photobook Piel Negro (10×10″)</strong></li>
-                            <li>Sobre de Arte Fine-Art (5 impresiones)</li>
+                            <li>Sobre de Arte Fine-Art con 5 impresiones</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="card featured">
+                <div class="card featured" data-msg="Hola, me interesa consultar disponibilidad para el Paquete Estudio de $28,500 MXN">
                     <div class="card-badge">⭐ El Más Elegido</div>
                     <div>
-                        <span class="tag">Salto al cine de autor</span>
+                        <span class="tag">Cine de autor & estudio</span>
                         <h3>Paquete Estudio</h3>
                         <span class="price-line">$28,500 MXN</span>
-                        <p class="card-desc">Tu historia en un cortometraje de 10 min combinado con una experiencia interactiva de Set de Estudio Móvil para tus invitados.</p>
+                        <p class="card-desc">Cortometraje cinematográfico combinado con una experiencia interactiva de Set de Estudio Móvil para tus invitados.</p>
                         <ul class="feature-list">
                             <li><strong>300 Fotos Digitales</strong> Clean + <strong>25 High-End</strong></li>
-                            <li><strong>Wedding Film Cortometraje (10 Min)</strong></li>
-                            <li><strong>Set de Estudio Móvil en Fiesta</strong></li>
+                            <li><strong>Film Cortometraje (10 Min)</strong></li>
+                            <li><strong>Set de Estudio Móvil en Recepción</strong></li>
                             <li><strong>Photobook Fine-Art (30×30 cm)</strong></li>
                             <li>🎁 <strong>+ 2 Photobooks Clon de regalo</strong></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-badge" style="background: var(--gold-soft);">🔥 Promo Cine</div>
+                <div class="card" data-msg="Hola, me interesa información del Paquete Cinema de $42,900 MXN">
+                    <div class="card-badge" style="background: var(--gold-soft);">🔥 Cobertura Total</div>
                     <div>
                         <span class="tag">Cine documental</span>
                         <h3>Paquete Cinema</h3>
                         <span class="price-line">$42,900 MXN</span>
-                        <p class="card-desc">Una película documental de 45 min que inmortaliza los testimonios, votos y emociones puras de tu boda con voces reales.</p>
+                        <p class="card-desc">Una película documental de 45 min con entrevistas, votos y audio real de bodas o quinceaños inolvidables.</p>
                         <ul class="feature-list">
                             <li><strong>450 Fotos Digitales</strong> Clean + <strong>50 High-End</strong></li>
                             <li><strong>Documental (45 Min) con Entrevistas</strong></li>
@@ -554,13 +547,13 @@
         </div>
     </section>
 
-    <!-- COMPARATIVO -->
+    <!-- COMPARATIVO DE PRECIOS -->
     <section>
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">Comparativo de experiencias</span>
-                <h2>La inversión se traduce en <span class="italic-gold">tiempo, mirada y archivo</span>.</h2>
-                <p>Una lectura rápida para comparar la escala de cada producción. Los detalles se personalizan durante la consulta.</p>
+                <span class="eyebrow">Tarifario de producciones en Chihuahua</span>
+                <h2>Inversión transparente para <span class="italic-gold">tu evento</span>.</h2>
+                <p>Haz clic sobre cualquier renglón para cotizar esa opción directamente por WhatsApp.</p>
             </div>
 
             <div class="table-wrap">
@@ -568,67 +561,67 @@
                     <thead>
                         <tr>
                             <th>Colección</th>
-                            <th>Fotos</th>
-                            <th>Wedding film</th>
-                            <th>Material</th>
+                            <th>Fotografía</th>
+                            <th>Video / Film</th>
+                            <th>Material Físico</th>
                             <th style="text-align:right;">Inversión</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar la Colección Inicial ($10,500 MXN)">
                             <td>Inicial</td>
                             <td>90 Clean / 10 High-End</td>
                             <td>3 minutos</td>
-                            <td>Sobre de Arte con Paquete de Impresiones Físicas</td>
+                            <td>Sobre de Arte + Impresiones Físicas</td>
                             <td>$10,500 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Esencial ($15,500 MXN)">
                             <td>Esencial</td>
                             <td>135 Clean / 15 High-End</td>
                             <td>5 minutos</td>
                             <td>Sobre de Arte + Photobook Pasta Dura (20×20 cm)</td>
                             <td>$15,500 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Clásico ($18,000 MXN)">
                             <td>Clásico</td>
                             <td>160 Clean / 20 High-End</td>
                             <td>10 minutos</td>
                             <td>Sobre de Arte + Photobook Piel (25×25 cm)</td>
                             <td>$18,000 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Elegante ($23,000 MXN)">
                             <td>Elegante</td>
                             <td>205 Clean / 25 High-End</td>
                             <td>20 minutos</td>
                             <td>Sobre de Arte + Photobook Piel Premium (30×30 cm)</td>
                             <td>$23,000 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Producción Studio ($28,500 MXN)">
                             <td>Producción Studio</td>
                             <td>250 Clean / 30 High-End</td>
                             <td>25 minutos</td>
-                            <td>Photobook Piel Premium (30×30 cm) + 2 Clones (15×15 cm)</td>
+                            <td>Photobook Piel (30×30 cm) + 2 Clones de regalo (15×15 cm)</td>
                             <td>$28,500 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Studio Premium ($35,000 MXN)">
                             <td>Studio Premium</td>
                             <td>315 Clean / 35 High-End</td>
                             <td>30 minutos</td>
-                            <td>Estuche Fine-Art + Photobook (25×25 cm) + 2 Clones (15×15 cm) + Cuadro Aluminio/Madera</td>
+                            <td>Estuche Fine-Art + Photobook (25×25 cm) + 2 Clones + Cuadro</td>
                             <td>$35,000 MXN</td>
                         </tr>
-                        <tr>
+                        <tr data-msg="Hola, quiero cotizar el Paquete Documental ($42,900 MXN)">
                             <td>Documental</td>
                             <td>405 Clean / 45 High-End</td>
                             <td>45 minutos</td>
-                            <td>Estuche Fine-Art + Photobook (30×30 cm) + 2 Clones (20×20 cm) + Metal ChromaLuxe Flotante</td>
+                            <td>Estuche Fine-Art + Photobook (30×30 cm) + 2 Clones + Metal ChromaLuxe</td>
                             <td>$42,900 MXN</td>
                         </tr>
-                        <tr>
-                            <td>Cinema</td>
+                        <tr data-msg="Hola, quiero cotizar la opción Cinema Supreme VIP ($60,000 MXN)">
+                            <td>Cinema Supreme</td>
                             <td>540 Clean / 60 High-End</td>
                             <td>60 minutos</td>
-                            <td>Estuche Fine-Art + Photobook Gran Formato (30×30 cm) + 2 Clones Réplica (30×30 cm) + Cuadro Monumental + Flotante</td>
+                            <td>Estuche Fine-Art + Photobook Gran Formato + 2 Clones + Cuadro Monumental</td>
                             <td>$60,000 MXN</td>
                         </tr>
                     </tbody>
@@ -637,59 +630,59 @@
         </div>
     </section>
 
-    <!-- CINEMA LEGACY -->
-    <section class="legacy-section">
+    <!-- CINEMA SUPREME -->
+    <section class="legacy-section" data-msg="Hola, me interesa agendar una consulta privada VIP para la producción Cinema Supreme ($60,000 MXN)">
         <div class="wrap row">
             <div class="row-media">
-                <!-- CAMBIO 5: Foto Cinema Legacy -->
-                <img src="galeria/foto-legacy.jpg" alt="Cinema Legacy Editorial High-End">
+                <img src="galeria/foto-legacy.jpg" alt="Fotógrafo y Videógrafo VIP en Chihuahua">
             </div>
             <div class="row-copy">
-                <span class="eyebrow">👑 La cúspide patrimonial</span>
-                <h2>Cinema <span class="italic-gold">Legacy</span></h2>
+                <span class="eyebrow">👑 Máxima Producción VIP</span>
+                <h2>Cinema <span class="italic-gold">Supreme</span></h2>
                 <span class="price-line">$60,000 MXN</span>
-                <p>Un largometraje cinematográfico de 60 minutos que preserva tu historia de vida, incorporando tu despedida de soltera/o y la más alta ingeniería de impresión de museo.</p>
+                <p>Un largometraje cinematográfico de 60 minutos con la máxima ingeniería de edición, fotografía de alta gama y diseño de vestuario exclusivo para bodas y quinceaños exigentes.</p>
                 <ul class="feature-list">
-                    <li><strong>Cobertura VIP exclusiva</strong> — Despedida + día de la boda sin límite de horas (2 fotógrafos + 2 videógrafos + operador de audio)</li>
-                    <li><strong>Cinematografía</strong> — Largometraje documental patrimonial (60 min) + trailer + teaser</li>
-                    <li><strong>Galería digital VIP</strong> — 550 fotos Clean + 60 retoques High-End</li>
-                    <li><strong>Piezas patrimoniales impresas</strong> — Photobook principal Fine-Art (30×30 cm) en estuche de madera + 2 photobooks clon de regalo + 1 gran formato premium (20×30″) en ChromaLuxe o acrílico flotante</li>
+                    <li><strong>Cobertura VIP Exclusiva</strong> — Sesión previa + día completo del evento (2 fotógrafos + 2 videógrafos)</li>
+                    <li><strong>Cinematografía de Autor</strong> — Largometraje documental (60 min) + trailer + teaser</li>
+                    <li><strong>Galería Digital VIP</strong> — 550 fotos Clean + 60 retoques editoriales High-End</li>
+                    <li><strong>Edición Impresa Fine-Art</strong> — Photobook principal (30×30 cm) + 2 clones réplica + cuadro monumental</li>
                 </ul>
-                <a href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20una%20consulta%20privada%20para%20Cinema%20Legacy" class="btn light" target="_blank" rel="noopener">Solicitar consulta privada</a>
+                <div class="btn light">Solicitar consulta privada por WhatsApp</div>
             </div>
         </div>
     </section>
 
     <!-- CTA FINAL -->
-    <section class="final-cta">
+    <section class="final-cta" data-msg="Hola, me gustaría agendar una reunión o llamada para platicar de mi evento">
         <div class="wrap">
-            <span class="eyebrow">Fechas limitadas · 2026</span>
-            <h2>Tu historia merece una pieza que permanezca.</h2>
-            <p>Cuéntanos la escala de tu celebración y diseñaremos una propuesta privada para ustedes.</p>
-            <a href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20una%20consulta%20privada%20para%20mi%20boda" class="btn" target="_blank" rel="noopener">Solicitar una consulta privada</a>
+            <span class="eyebrow">Fechas Limitadas 2026 · Chihuahua, Chih.</span>
+            <h2>Haz de tu boda, quinceaños o proyecto de moda una pieza inolvidable.</h2>
+            <p>Cuéntanos la escala de tu evento o sesión y diseñaremos una propuesta personalizada en fotografía, video y diseño de vestidos.</p>
+            <div class="btn">Solicitar consulta por WhatsApp</div>
         </div>
     </section>
 
-    <footer>Martínez Ibarra · Studio / Atelier — 2026</footer>
+    <footer>Martínez Ibarra · Fotografía, Video & Alta Costura — Chihuahua 2026</footer>
 
+    <!-- REDIRECCIÓN GLOBAL A WHATSAPP -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const zoomFrame = document.querySelector('.zoom-frame');
-            const zoomImg = zoomFrame ? zoomFrame.querySelector('img') : null;
+        // ⚠️ CAMBIA ESTE NÚMERO POR EL TUYO CON CLAVE DE PAÍS (ejemplo para MX: 521 + 10 dígitos)
+        const TELEFONO_WHATSAPP = '5216141722100';
 
-            if (zoomFrame && zoomImg) {
-                zoomFrame.addEventListener('mousemove', (e) => {
-                    const rect = zoomFrame.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    zoomImg.style.transformOrigin = `${x}% ${y}%`;
-                    zoomImg.style.transform = 'scale(2.4)';
-                });
-                zoomFrame.addEventListener('mouseleave', () => {
-                    zoomImg.style.transform = 'scale(1)';
-                    zoomImg.style.transformOrigin = 'center center';
-                });
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.addEventListener('click', (e) => {
+                // Busca si el elemento o sus padres tienen un mensaje personalizado
+                const targetConMsg = e.target.closest('[data-msg]');
+                
+                let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
+                
+                if (targetConMsg && targetConMsg.dataset.msg) {
+                    mensaje = targetConMsg.dataset.msg;
+                }
+
+                const urlWhatsApp = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+                window.open(urlWhatsApp, '_blank');
+            });
         });
     </script>
 </body>
