@@ -201,7 +201,7 @@
         .feature-list li:last-child { border-bottom: 1px solid var(--line); }
         .feature-list li strong { color: var(--ink); font-weight: 600; }
 
-        /* DARK SECTION Y LUPA INTERACTIVA */
+        /* DARK SECTION & CONTENEDOR ZOOM */
         .dark-section {
             background: #100E0A;
             color: #F1ECE0;
@@ -214,31 +214,17 @@
         .zoom-frame {
             position: relative;
             overflow: hidden;
+            cursor: crosshair;
             border-radius: 2px;
             height: 560px;
             border: 1px solid rgba(241, 236, 224, 0.16);
-            cursor: crosshair;
         }
 
-        .zoom-frame img.zoom-target {
+        .zoom-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-        }
-
-        /* Lente de la Lupa */
-        .magnifier-lens {
-            position: absolute;
-            width: 170px;
-            height: 170px;
-            border: 2px solid var(--gold-soft);
-            border-radius: 50%;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.85), inset 0 0 10px rgba(0, 0, 0, 0.5);
-            pointer-events: none; /* Permite que los clics pasen directamente al contenedor */
-            display: none;
-            background-repeat: no-repeat;
-            z-index: 10;
+            transition: transform 0.12s ease-out;
         }
 
         .zoom-tag {
@@ -486,14 +472,13 @@
         </div>
     </section>
 
-    <!-- ATELIER (CON LUPA ACTIVA Y CLIC A WHATSAPP) -->
-    <section class="dark-section" data-msg="Hola, me interesa conocer más sobre las sesiones de estudio y el diseño de vestidos de novia / alta costura">
+    <!-- ATELIER (ZOOM PANORÁMICO POR SCALA) -->
+    <section class="dark-section">
         <div class="wrap row">
             <div class="row-media">
-                <div class="zoom-frame" id="zoomContainer" data-msg="Hola, estuve viendo la sección de alta costura y retoque de piel, me gustaría cotizar una sesión o vestido">
-                    <img src="galeria/foto-atelier.jpg" id="zoomImg" class="zoom-target" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
-                    <div class="magnifier-lens" id="magnifierLens"></div>
-                    <div class="zoom-tag">Desliza el cursor para ver detalles</div>
+                <div class="zoom-frame" data-msg="Hola, estuve viendo la sección de alta costura y retoque de piel, me gustaría cotizar una sesión o vestido">
+                    <img src="galeria/foto-atelier.jpg" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
+                    <div class="zoom-tag">Pasa el cursor para inspeccionar el detalle de piel y textil</div>
                 </div>
             </div>
             <div class="row-copy">
@@ -683,51 +668,31 @@
 
     <footer>Martínez Ibarra · Fotografía, Video & Alta Costura — Chihuahua 2026</footer>
 
-    <!-- SCRIPT AMBOS FUNCIONALES (WHATSAPP + LUPA) -->
     <script>
         const TELEFONO_WHATSAPP = '5216141722100';
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. LÓGICA DE LA LUPA (ZOOM AL PASAR CURSOR)
-            const container = document.getElementById('zoomContainer');
-            const img = document.getElementById('zoomImg');
-            const lens = document.getElementById('magnifierLens');
+            // 1. MÉTODO DE ZOOM ORIGINAL (PANORÁMICO POR SCALA DE IMAGEN)
+            const zoomFrame = document.querySelector('.zoom-frame');
+            const zoomImg = zoomFrame ? zoomFrame.querySelector('img') : null;
 
-            if (container && img && lens) {
-                const zoomLevel = 2.5;
-
-                container.addEventListener('mouseenter', () => {
-                    lens.style.display = 'block';
-                    lens.style.backgroundImage = `url('${img.src}')`;
+            if (zoomFrame && zoomImg) {
+                zoomFrame.addEventListener('mousemove', (e) => {
+                    const rect = zoomFrame.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    zoomImg.style.transformOrigin = `${x}% ${y}%`;
+                    // Cambiado de scale(2.4) a scale(3.2) para dar mayor detalle de magnificación
+                    zoomImg.style.transform = 'scale(3.2)';
                 });
 
-                container.addEventListener('mouseleave', () => {
-                    lens.style.display = 'none';
-                });
-
-                container.addEventListener('mousemove', (e) => {
-                    const rect = container.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    let lensX = x - (lens.offsetWidth / 2);
-                    let lensY = y - (lens.offsetHeight / 2);
-
-                    lens.style.left = `${lensX}px`;
-                    lens.style.top = `${lensY}px`;
-
-                    const bgWidth = container.offsetWidth * zoomLevel;
-                    const bgHeight = container.offsetHeight * zoomLevel;
-
-                    const bgX = (x * zoomLevel) - (lens.offsetWidth / 2);
-                    const bgY = (y * zoomLevel) - (lens.offsetHeight / 2);
-
-                    lens.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
-                    lens.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+                zoomFrame.addEventListener('mouseleave', () => {
+                    zoomImg.style.transform = 'scale(1)';
+                    zoomImg.style.transformOrigin = 'center center';
                 });
             }
 
-            // 2. LÓGICA REDIRECCIÓN A WHATSAPP
+            // 2. REDIRECCIÓN GLOBAL A WHATSAPP
             document.body.addEventListener('click', (e) => {
                 const targetConMsg = e.target.closest('[data-msg]');
                 let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
