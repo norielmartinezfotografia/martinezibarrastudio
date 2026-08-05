@@ -201,7 +201,7 @@
         .feature-list li:last-child { border-bottom: 1px solid var(--line); }
         .feature-list li strong { color: var(--ink); font-weight: 600; }
 
-        /* DARK SECTION */
+        /* DARK SECTION & EFECTO LUPA */
         .dark-section {
             background: #100E0A;
             color: #F1ECE0;
@@ -217,12 +217,28 @@
             border-radius: 2px;
             height: 560px;
             border: 1px solid rgba(241, 236, 224, 0.16);
+            cursor: crosshair;
         }
 
-        .zoom-frame img {
+        .zoom-frame img.zoom-target {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        /* Lupa Circular */
+        .magnifier-lens {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 2px solid var(--gold-soft);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            display: none;
+            background-repeat: no-repeat;
+            z-index: 10;
         }
 
         .zoom-tag {
@@ -236,6 +252,8 @@
             font-size: 0.68rem;
             letter-spacing: 1.6px;
             text-transform: uppercase;
+            pointer-events: none;
+            z-index: 5;
         }
 
         /* COLLECTIONS */
@@ -468,13 +486,14 @@
         </div>
     </section>
 
-    <!-- ATELIER -->
+    <!-- ATELIER CON LUPA INTERACTIVA -->
     <section class="dark-section" data-msg="Hola, me interesa conocer más sobre las sesiones de estudio y el diseño de vestidos de novia / alta costura">
         <div class="wrap row">
             <div class="row-media">
-                <div class="zoom-frame">
-                    <img src="galeria/foto-atelier.jpg" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
-                    <div class="zoom-tag">Clic para enviar mensaje directo</div>
+                <div class="zoom-frame" id="zoomContainer">
+                    <img src="galeria/foto-atelier.jpg" id="zoomImg" class="zoom-target" alt="Diseño de Vestidos de Novia y Alta Costura en Chihuahua">
+                    <div class="magnifier-lens" id="magnifierLens"></div>
+                    <div class="zoom-tag">Pasa el mouse para inspección High-End</div>
                 </div>
             </div>
             <div class="row-copy">
@@ -664,16 +683,17 @@
 
     <footer>Martínez Ibarra · Fotografía, Video & Alta Costura — Chihuahua 2026</footer>
 
-    <!-- REDIRECCIÓN GLOBAL A WHATSAPP -->
+    <!-- LÓGICA DE LA LUPA Y REDIRECCIÓN GLOBAL A WHATSAPP -->
     <script>
-        // ⚠️ CAMBIA ESTE NÚMERO POR EL TUYO CON CLAVE DE PAÍS (ejemplo para MX: 521 + 10 dígitos)
         const TELEFONO_WHATSAPP = '5216141722100';
 
         document.addEventListener('DOMContentLoaded', () => {
+            // --- REDIRECCIÓN WHATSAPP ---
             document.body.addEventListener('click', (e) => {
-                // Busca si el elemento o sus padres tienen un mensaje personalizado
+                // Evitamos que al dar clic en la zona de la lupa redirija si el usuario está inspeccionando la imagen
+                if (e.target.closest('#zoomContainer')) return;
+
                 const targetConMsg = e.target.closest('[data-msg]');
-                
                 let mensaje = "Hola, vi su sitio web y me gustaría información de sus servicios de fotografía, video y diseño en Chihuahua.";
                 
                 if (targetConMsg && targetConMsg.dataset.msg) {
@@ -683,6 +703,47 @@
                 const urlWhatsApp = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
                 window.open(urlWhatsApp, '_blank');
             });
+
+            // --- LÓGICA DE EFECTO LUPA ---
+            const container = document.getElementById('zoomContainer');
+            const img = document.getElementById('zoomImg');
+            const lens = document.getElementById('magnifierLens');
+
+            if (container && img && lens) {
+                const zoomLevel = 2.5; // Nivel de amplificación de textura
+
+                container.addEventListener('mouseenter', () => {
+                    lens.style.display = 'block';
+                    lens.style.backgroundImage = `url('${img.src}')`;
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    lens.style.display = 'none';
+                });
+
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // Posición de la lente centrada en el cursor
+                    let lensX = x - (lens.offsetWidth / 2);
+                    let lensY = y - (lens.offsetHeight / 2);
+
+                    lens.style.left = `${lensX}px`;
+                    lens.style.top = `${lensY}px`;
+
+                    // Cálculo del fondo amplificado dentro del círculo
+                    const bgWidth = container.offsetWidth * zoomLevel;
+                    const bgHeight = container.offsetHeight * zoomLevel;
+
+                    const bgX = (x * zoomLevel) - (lens.offsetWidth / 2);
+                    const bgY = (y * zoomLevel) - (lens.offsetHeight / 2);
+
+                    lens.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+                    lens.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+                });
+            }
         });
     </script>
 </body>
